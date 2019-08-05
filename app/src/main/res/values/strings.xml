@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Random Number Generator</string>
+    <string name="from_hint">Type a number...</string>
+    <string name="to_hint">Where to?</string>
+    <string name="from_greater_than_to_text">Choose a greater number as where to...</string>
+    <string name="empty"/>
 </resources>
