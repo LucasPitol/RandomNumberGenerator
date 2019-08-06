@@ -60,13 +60,13 @@ class MainActivity : AppCompatActivity() {
                 var from: Int = fromStr.toInt()
                 var to: Int = toStr.toInt()
 
-                if (from >= to) {
+                answer = if (from >= to) {
 
-                    answer = getString(R.string.from_greater_than_to_text)
+                    getString(R.string.from_greater_than_to_text)
 
                 } else {
 
-                    answer = ((from..to).random()).toString()
+                    ((from..to).random()).toString()
                 }
             }
         }
