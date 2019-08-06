@@ -10,6 +10,9 @@ class MainActivity : AppCompatActivity() {
 
     private var mViewHolder: ViewHolder = ViewHolder()
 
+    private val fromEmptyClaims: Array<String> = arrayOf("Alright, but where do I start?", "I swear there's something missing", "From?")
+    private val toEmptyClaims: Array<String> = arrayOf("Don't know where this is going...", "To infinity, r u sure?", "I swear there's something missing")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,21 +28,47 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getARandomClaim(claims: Array<String>): String {
+
+        var arrayLimit = (claims.count() - 1)
+
+        var i = (0..arrayLimit).random()
+
+       return claims[i]
+    }
+
     private fun shuffle(viewHolder: ViewHolder) {
 
-        var from: Int = viewHolder.from.text.toString().toInt()
+        var fromStr: String = viewHolder.from.text.toString()
 
-        var to: Int = viewHolder.to.text.toString().toInt()
+        var toStr: String = viewHolder.to.text.toString()
 
         var answer: String
 
-        if (from > to) {
+        if (fromStr.isNullOrEmpty()) {
 
-            answer = getString(R.string.from_greater_than_to_text)
+            answer = getARandomClaim(fromEmptyClaims)
 
         } else {
 
-            answer = ((from..to).random()).toString()
+            if (toStr.isNullOrEmpty()) {
+
+                answer = getARandomClaim(toEmptyClaims)
+
+            } else {
+
+                var from: Int = fromStr.toInt()
+                var to: Int = toStr.toInt()
+
+                if (from >= to) {
+
+                    answer = getString(R.string.from_greater_than_to_text)
+
+                } else {
+
+                    answer = ((from..to).random()).toString()
+                }
+            }
         }
 
         this.mViewHolder.answer.text = answer
